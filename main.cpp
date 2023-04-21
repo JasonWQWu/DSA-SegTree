@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
         std::string entry, time, value;
         std::istringstream iss(line);
         iss >> time >> value;
+        std::cout << time << " " << value << std::endl;
 
         // Made node with time and value
         // Append to array
