@@ -10,10 +10,10 @@ int main(int argc, char* argv[]) {
 
     data.open(argv[1]);
     while(std::getline(data,line)) {
-        std::string entry, time, value;
+        std::string entry, date, time, value;
         std::istringstream iss(line);
-        iss >> time >> value;
-        std::cout << time << " " << value << std::endl;
+        iss >> date >> time >> value;
+        std::cout << date << " " << time << " " << value << std::endl;
 
         // Made node with time and value
         // Append to array
