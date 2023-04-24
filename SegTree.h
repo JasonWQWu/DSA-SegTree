@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 
@@ -54,4 +56,7 @@ public:
   
   // Debug
   void printTree();
+  void printDot();
+  void genDot();
+
 };

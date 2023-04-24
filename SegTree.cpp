@@ -1,10 +1,11 @@
 #include "SegTree.h"
+#include <algorithm>
 
 /*********************** SegNode *************************/
 
 SegNode::SegNode(){
-  this->cars = 0;
-  this->date_time = "";
+  this->cars = -1;
+  this->date_time = "Null";
 }
 
 SegNode::SegNode(int cars, std::string date_time){
@@ -42,10 +43,9 @@ SegTree::SegTree(std::vector<SegNode> nodes){
 
   // Tree Height
   int h = (int)(ceil(log2(nodes.size())));
-
+  std::cout << "h : " << h << std::endl;
   // Max size of segment tree
   int max_size = 2 * (int)pow(2, h) -1;
-  std::cout << "max size: " << max_size << "\n";
 
   // node array
   std::vector<SegNode> *tree = new std::vector<SegNode>;
@@ -182,4 +182,68 @@ void SegTree::printTree(){
     i < this->getSize()-1 ? std::cout << ", " : std::cout << "]\n\n";
     it++;
   }
+}
+
+void SegTree::printDot(){
+
+  std::cout << "print tree size: " << this->seg_tree->size() << std::endl;
+  
+  std::vector<std::string> valid;
+
+  std::vector<SegNode>::iterator it = this->seg_tree->begin();
+  for(int i = 0; i < this->getSize(); i++){
+    std::cout << "Node" << i << "[label=" << it->cars << "]\n";
+    valid.push_back("Node" + std::to_string(i));
+    it++;
+    while(it->cars == -1){
+      i++;
+      it++;
+    }
+  }
+
+  for(int i = 0; i < this->getSize(); i++){
+    for(int j = i * 2; j < i * 2 + 2; j++){
+      if(std::find(valid.begin(), valid.end(), "Node" + std::to_string(j+1)) != valid.end()){
+        std::cout << "Node" << i << " -> " << "Node" << j+1 << std::endl;
+      }
+      if(j*2+2 == this->getSize()){
+        break;
+      }
+    }
+  }
+}
+
+// Dot File
+void SegTree::genDot(){
+  std::ofstream dotFile("output.dot");
+  dotFile << "digraph G {" << std::endl;
+  
+  std::vector<std::string> valid;
+
+  std::vector<SegNode>::iterator it = this->seg_tree->begin();
+  for(int i = 0; i < this->getSize(); i++){
+    dotFile << "Node" << i << "[label=" << it->cars << "]\n";
+    valid.push_back("Node" + std::to_string(i));
+    it++;
+    while(it->cars == -1){
+      i++;
+      it++;
+    }
+  }
+
+  dotFile << std::endl;
+
+  for(int i = 0; i < this->getSize(); i++){
+    for(int j = i * 2; j < i * 2 + 2; j++){
+      if(std::find(valid.begin(), valid.end(), "Node" + std::to_string(j+1)) != valid.end()){
+        dotFile << "Node" << i << " -> " << "Node" << j+1 << std::endl;
+      }
+      if(j*2+2 == this->getSize()){
+        break;
+      }
+    }
+  }
+
+  dotFile << "}" << std::endl;
+  dotFile.close();
 }
