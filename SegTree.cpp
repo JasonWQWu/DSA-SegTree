@@ -1,5 +1,9 @@
 #include "SegTree.h"
 #include <algorithm>
+#include <math.h>
+#include <fstream>
+
+using namespace std;
 
 /*********************** SegNode *************************/
 
@@ -43,7 +47,7 @@ SegTree::SegTree(std::vector<SegNode> nodes){
 
   // Tree Height
   int h = (int)(ceil(log2(nodes.size())));
-  std::cout << "h : " << h << std::endl;
+  //std::cout << "h : " << h << std::endl;
   // Max size of segment tree
   int max_size = 2 * (int)pow(2, h) -1;
 
