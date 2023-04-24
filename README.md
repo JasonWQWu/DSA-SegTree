@@ -15,4 +15,11 @@ Start and end indices
 Min, Max, sum of elements in the segment
 Pointers, to point to the left and right child node
 
+When working with segment trees, there are several important concepts and techniques that one should be familiar with. Some important things to know when working with them are...
 
+1. Query and update operations: Knowing how to implement query and update operations for the specific problem you are trying to solve. 
+2. Building the segment tree: Knowing how to build the segment tree from the original array.
+3. Segment tree node structures: Knowing the contents of each node in the segment tree and the information contained within each range of indices they represent.
+4. Range minimum/maximmum queries: Effectively and efficiently implementing a range minimum/maximum query operation to take advantage of a segment trees structure.
+5. Lazy propagation: A technique used to significantly reduce the time complexity of some update operations.
+6. Space and time complexity: Knowing the importance to consider the space and time complexity of the operations that are being performed. Such as O(n log n) space to store the structure and support queries and updates. 
