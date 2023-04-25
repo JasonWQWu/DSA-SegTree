@@ -24,4 +24,4 @@ When working with segment trees, there are several important concepts and techni
 # Running the Code
 To use our program there are 3 main files, a main.cpp, SegTree.cpp, and SegTree.h; in addition, we will be using a text file containing camera records of the number of cars recorded at a particular timestamp. From the text file a vector of nodes containing the data are used to make the segment tree.\
 The following command line is used to run the prgram.\
-```g++ -std=c++11 main.cpp -o main && ./main SegTree.cpp traffic.txt```
+```g++ -std=c++11 main.cpp SegTree.cpp -o main && ./main traffic.txt```
