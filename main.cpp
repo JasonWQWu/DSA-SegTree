@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
             // Update Value
             case 2: {
                 int index, value;
-                std::cout << "Enter an index (0-720) to update: \n";
+                std::cout << "Enter an index (0-"<< ArrayNode.size()-1") to update: \n";
                 std::cin >> index;
                 if (index >= 0 && index <= len - 1) {
                     std::cout << "Enter an value to update: \n";
