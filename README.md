@@ -1,7 +1,4 @@
 # DSA-SegTree
-
-#Documentation 
-
 Segment trees are a powerful data structure used in many applications, such as range queries, and are often used in competitive programming. They are essentially a binary tree, where each node represents a segment of an array.
 
 The root node of the tree represents the entire array, and each child node represents half of the array, and so on. Each node keeps track of the minimum, maximum, or sum of the elements within its segment.
@@ -23,3 +20,8 @@ When working with segment trees, there are several important concepts and techni
 4. Range minimum/maximmum queries: Effectively and efficiently implementing a range minimum/maximum query operation to take advantage of a segment trees structure.
 5. Lazy propagation: A technique used to significantly reduce the time complexity of some update operations.
 6. Space and time complexity: Knowing the importance to consider the space and time complexity of the operations that are being performed. Such as O(n log n) space to store the structure and support queries and updates. 
+
+# Running the Code
+To use our program there are 3 main files, a main.cpp, SegTree.cpp, and SegTree.h; in addition, we will be using a text file containing camera records of the number of cars recorded at a particular timestamp. From the text file a vector of nodes containing the data are used to make the segment tree.\
+The following command line is used to run the prgram.\
+```g++ -std=c++11 main.cpp -o main && ./main SegTree.cpp traffic.txt```
