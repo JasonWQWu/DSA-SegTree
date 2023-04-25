@@ -5,7 +5,7 @@
 #include <vector>
 #include "SegTree.h"
 
-// -> /main SegTree.cpp traffic.txt
+// % g++ -std=c++11 main.cpp SegTree.cpp -o main && ./main traffic.txt
 
 // Return vector<SegNode> containing timestamp and car number
 std::vector<SegNode> readFile(std::string filename){
@@ -39,7 +39,7 @@ std::vector<SegNode> readFile(std::string filename){
 int main(int argc, char* argv[]) {
     
     // Name of file
-    std::string data = argv[2];
+    std::string data = argv[1];
 
     // Get data from file
     std::vector<SegNode> ArrayNode = readFile(data);
