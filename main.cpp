@@ -4,11 +4,18 @@
 #include <string>
 #include <vector>
 #include "SegTree.h"
-//#include "SegTree.cpp"
 
+// -> /main SegTree.cpp traffic.txt
+
+// Return vector<SegNode> containing timestamp and car number
 std::vector<SegNode> readFile(std::string filename){
+    
+    // Initialize file and the vector of type SegNode
     std::vector<SegNode> ArrayNodes;
     std::ifstream data(filename);
+    
+    // Read each line and store the first part of the file
+    // into the timestamp and second part into cars.
     if (data.is_open()) {
         std::string line;
         std::getline(data,line);
@@ -18,12 +25,10 @@ std::vector<SegNode> readFile(std::string filename){
             int value;
             getline(ss, timestamp, ',');
             ss >> value;
-            //date_time.push_back(timestamp);
-            //cars.push_back(value);
+
+            // Create node and push into arrray
             SegNode node = SegNode(value,timestamp);
             ArrayNodes.push_back(node);
-//            Node.set_date_time(timestamp);
-//            Node.set_cars(value);
         }
         data.close();
     }
@@ -31,21 +36,15 @@ std::vector<SegNode> readFile(std::string filename){
 }
 
 
-
-
-
 int main(int argc, char* argv[]) {
-    std::string data = argv[1];
+    
+    // Name of file
+    std::string data = argv[2];
 
+    // Get data from file
     std::vector<SegNode> ArrayNode = readFile(data);
-
-    // std::vector<SegNode>::iterator it = ArrayNode.begin();
-    // std::cout << "[";
-    // for(int i = 0; i < 10; i++){
-    //     std::cout << "[" << it[i].get_cars() << ", " << it[i].get_date_time() << "]";
-    //     i < 9 ? std::cout << ", " : std::cout << "]";
-    // }
-
+    
+    // Create Segment Tree
     SegTree *seg_tree = new SegTree(ArrayNode);
     int len = ArrayNode.size();
     int input = 0;
@@ -57,16 +56,17 @@ int main(int argc, char* argv[]) {
                   << "\t1. Find Max\n\t2. Update a value\n\t3. Output DOT file\n\t4. Quit\n"
                   << "-------------------------------------------\n";
         std::cin >> input;
-        //std::cout << "TEST\n";
+
 
         switch (input) {
-            case 1: {// Find Max
-                //std::cout << "TEST\n";
+            // Find Max
+            case 1: {
                 SegNode max = seg_tree->treeMax(seg_tree->getTree(), len, 0, len - 1);
                 std::cout << "Cars: " << max.get_cars() << " | Date & Time: " << max.get_date_time() << std::endl;
                 break;
             }
-            case 2: {// Update Value
+            // Update Value
+            case 2: {
                 int index, value;
                 std::cout << "Enter an index (0-720) to update: \n";
                 std::cin >> index;
@@ -81,41 +81,27 @@ int main(int argc, char* argv[]) {
                 }
                 break;
                 //seg_tree->update(ArrayNode, seg_tree->getTree(), 0, len-1, index, newSegNode, 0;)
-                }
-            case 3: {// Dot Gen
+            }
+            // Dot Gen
+            case 3: {
                 seg_tree->genDot();
                 std::cout << "DOT file will now generate after quitting.\n";
                 break;
-                }
-            case 4: {// Quit
+            }
+            // Quit
+            case 4: {
                 input = -1;
                 std::cout << "Quitting.\n";
                 break;
-                }
-            default: {// Default
+            }
+            // Default
+            default: {
                 std::cout << "Error: Not a valid option.\n";
                 input = 0;
-                }
+            }
         }
     }
-
-    // // Test Max
-    // int len = ArrayNode.size();
-
-    // SegNode max = seg_tree->treeMax(seg_tree->getTree(), len, 0, len-1);
-    // std::cout << max.get_cars() << " - " << max.get_date_time() << std::endl;
-
-    // // Update Max
-    // SegNode newSegNode = SegNode(921, "Updated Node");
-    // seg_tree->update(ArrayNode, seg_tree->getTree(), 0, len-1, 20, newSegNode, 0);
-    // max = seg_tree->treeMax(seg_tree->getTree(), len, 0, len-1);
-    // std::cout << max.get_cars() << " - " << max.get_date_time() << std::endl;
-    // newSegNode = SegNode(90, "Updated Node");
-    // seg_tree->update(ArrayNode, seg_tree->getTree(), 0, len-1, 21, newSegNode, 0);
-    // max = seg_tree->treeMax(seg_tree->getTree(), len, 0, len-1);
-    // std::cout << max.get_cars() << " - " << max.get_date_time() << std::endl;
-
-    // seg_tree->printTree();
+    
+    // Create dot file of segment tree
     seg_tree->genDot();
-
 }
